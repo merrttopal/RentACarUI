@@ -1,0 +1,12 @@
+
+<div class="container">
+    <div class="row">
+        <ul class="list-group">
+            <li  *ngFor="let brand of brands" class=" list-group-item"
+            routerLink="cars/{{brand.id}}" >
+                 {{brand.name}} 
+            </li>
+        </ul>
+        </div>
+  </div>
+
