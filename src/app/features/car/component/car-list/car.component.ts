@@ -1,7 +1,7 @@
 import { Car } from 'src/app/shared/models/car';
-import { CarService } from './../../shared/services/car.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CarAbsractService } from '../../services/abstracts/car-absract.service';
 
 @Component({
   selector: 'app-car',
@@ -11,9 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 export class CarComponent implements OnInit {
   cars: Car[] = [];
   textFilter: string;
+  current:Car;
 
   constructor(
-    private carService: CarService,
+    
+    private carAbstractService:CarAbsractService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -28,14 +30,18 @@ export class CarComponent implements OnInit {
   }
 
   getCars() {
-    this.carService.getAllCar().subscribe((response) => {
+    this.carAbstractService.getCarList().subscribe((response) => {
+      this.cars = response;})
+  }
+
+  getCarByBrand(brandId: number) {
+    this.carAbstractService.getCarByBrand(brandId).subscribe((response) => {
       this.cars = response;
     });
   }
 
-  getCarByBrand(brandId: number) {
-    this.carService.getCarByBrand(brandId).subscribe((response) => {
-      this.cars = response;
-    });
+  currentCar(car:Car):void {
+    this.current = car;
+    console.log(this.current);
   }
 }

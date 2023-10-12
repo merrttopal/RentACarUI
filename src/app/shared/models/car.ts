@@ -5,6 +5,7 @@ export interface Car{
     dailyPrice:number,
     modelYear:number,
     state:number,
+    imageUrl:string,
    // modelId:number,
     model:Model
 }

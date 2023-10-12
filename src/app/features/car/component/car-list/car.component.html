@@ -1,0 +1,47 @@
+<form class="w-50 me-3 mt-5 mb-5">
+  <input type="search" class="form-control" placeholder="Search..." [(ngModel)]="textFilter"  name="filterText"
+    id="filterText">
+</form>
+
+
+
+<div class="row">
+  <div *ngFor="let car of cars | filterPipe:textFilter" 
+  class="card mb-4 col-md-4 m-2" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="">
+  <div class="card-body ">
+    <h5 class="card-title">{{car.model.name}}</h5>
+    <div class=" "><img class="img-fluid" [src]="car.imageUrl" >
+    </div>
+    <button class=" d-block mb-3 mx-auto btn btn-primary " (click)="currentCar(car)"  type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                       >rent</button>
+  </div>
+</div>
+</div>
+
+<div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Car update ...</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div *ngIf="current"  class="row d-flex align-items-start justify-content-center g-5 " >
+            <img [src]="current.imageUrl" >
+            {{current.plate}}
+            {{current.dailyPrice}}
+            {{current.modelYear}}
+      </div>
+
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary" data-bs-dismiss="modal" >Close</button>
+        <button type="button" class=" btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
